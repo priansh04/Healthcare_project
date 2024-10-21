@@ -10,6 +10,10 @@ const port = process.env.PORT || 5000;
 
 app.use(express.json())
 app.use(cors());
+//Error handling middleware
+app.use(errorHandler);
+
+//ROUTES BELOW
 
 // Define a route for the root URL
 app.get('/', (req, res) => {
