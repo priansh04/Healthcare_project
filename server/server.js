@@ -1,26 +1,24 @@
-// Import express
 const express = require('express');
-const connectDb = require("./config/dbConnection");
-const errorHandler = require("./middlewares/errorHandler");
-const cors = require("cors");
+const connectDb= require('./config/dbConnection');
+const errorHandler = require('./middleware/errorHandler');
+const cors = require('cors');
+const port = process.env.PORT || 5000;
+
+const dotenv = require("dotenv");
+dotenv.config();
 
 connectDb();
 const app = express();
-const port = process.env.PORT || 5000;
 
-app.use(express.json())
+app.use(express.json());
 app.use(cors());
-//Error handling middleware
+
 app.use(errorHandler);
 
-//ROUTES BELOW
-
-// Define a route for the root URL
 app.get('/', (req, res) => {
-    res.send('Hello, World!');
+    res.send('working');
 });
 
-// Start the server on port 3000
-app.listen(3000, () => {
-    console.log('Server running on http://localhost:3000');
-});
+app.listen(port, () => {
+    console.log("Server is running on http:localhost:${port}");
+}) ;
