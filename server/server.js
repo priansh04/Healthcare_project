@@ -7,8 +7,7 @@ const hbs = require("hbs");
 const path = require("path");
 const asyncHandler = require('express-async-handler');
 const bcrypt = require('bcrypt');
-
-
+const doctorRoutes = require("./router/doctorRoutes");
 
 const dotenv = require("dotenv");
 dotenv.config();
@@ -23,7 +22,7 @@ app.use(cors());
 app.use(errorHandler);
 
 app.use('/api/register', require("./router/userRouter"));
-
+app.use('/api/doctors', require("./router/doctorRoutes"));
 
 // ERROR handling middleware
 app.use(errorHandler);
