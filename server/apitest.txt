@@ -43,3 +43,8 @@ Expected Response (if the doctor is successfully deleted):
 {
     "message": "Doctor deleted successfully"
 }
+
+app.post('/photos/upload', upload.array('photos', 12), function (req, res, next) {
+  // req.files is array of `photos` files
+  // req.body will contain the text fields, if there were any
+})
