@@ -8,6 +8,8 @@ const path = require("path");
 const asyncHandler = require('express-async-handler');
 const bcrypt = require('bcrypt');
 const doctorRoutes = require("./router/doctorRoutes");
+const multer = require('multer')
+const upload = multer({ dest: 'uploads/' })
 
 const dotenv = require("dotenv");
 dotenv.config();
@@ -55,6 +57,11 @@ app.get("/allusers",(req,res)=>{
         ]
     })
 })
+app.post('/profile', upload.single('avatar'), function (req, res, next) {
+    console.log(req.body);
+    console.log(req.file);
+    return res.redirect("/home");
+  })
 
 hbs.registerPartials(path.join(__dirname, '/views/partials'));
 
